@@ -78,7 +78,7 @@ def cancellings(request):
     context = {}
     if request.method == 'POST':
         id_r = request.POST.get('bus_id')
-        #seats_r = int(request.POST.get('no_seats'))
+        # seats_r = int(request.POST.get('no_seats'))
 
         try:
             book = Book.objects.get(id=id_r)
@@ -97,7 +97,7 @@ def cancellings(request):
 
 
 @login_required(login_url='signin')
-def seebookings(request,new={}):
+def seebookings(request, new={}):
     context = {}
     id_r = request.user.id
     book_list = Book.objects.filter(userid=id_r)

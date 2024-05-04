@@ -1,4 +1,4 @@
-{% extends 'myapp/base.html' %}
+{% extends 'main/base.html' %}
 {% block content %}
 <h3>{{msg}}</h3>
 <h2>List of buses</h2>
@@ -32,7 +32,7 @@
     </tr>
     {% endfor %}
 </table>
-<form action="{% url 'bookings' %}" method="post">
+<form action="{% url 'book' %}" method="post">
     <h3>Choose bus to book</h3>
     {% csrf_token %}
     <div class="col-auto">

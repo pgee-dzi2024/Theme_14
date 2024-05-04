@@ -1,21 +1,23 @@
-{% extends 'myapp/base.html' %}
+{% extends 'main/base.html' %}
+
+   <!-- Page Header -->
+   <header class="header header-mini">
+      <div class="header-title">{{title}}</div>
+   </header> <!-- End Of Page Header -->
+
 {% block content %}
-
 <div class="container">
-        <div class="row">
-            <div class="col-sm-6 mx-auto" style="margin-top: 70px">
-                <form action="{% url 'signout' %}" method="post">
-                    {% csrf_token %}
-                    {{user}} successful login! {{id}}
-
-
-                    <div class="pull-right">
-                        <button type="Submit" class="btn btn-success float-right">Sign out</button>
-                    </div>
-
-                </form>
-            </div>
+    <div class="row">
+        <div class="col-sm-6 mx-auto" style="margin-bottom:350px">
+            <form action="{% url 'sign-out' %}" method="post">
+                {% csrf_token %}
+                {{user}} успешно влезе в системата! {{id}}
+                <div class="pull-right">
+                    <button type="Submit" class="btn btn-success float-right">Излизане</button>
+                </div>
+            </form>
         </div>
-
     </div>
+
+</div>
 {% endblock %}

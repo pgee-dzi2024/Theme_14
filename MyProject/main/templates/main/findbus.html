@@ -1,10 +1,10 @@
-{% extends 'myapp/base.html' %}
+{% extends 'main/base.html' %}
 {% block content %}
 <div class="container">
         <div class="row">
             <div class="col-sm-6 mx-auto" style="margin-top: 70px">
                 <h2>Find bus</h2>
-                <form action="{% url 'findbus' %}" method="post">
+                <form action="{% url 'find-bus' %}" method="post">
                     {% csrf_token %}
                     <div class="form-group row">
                         <label for="example-email-input" class="col-2 col-form-label">From</label>
