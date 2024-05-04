@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ITS Transit</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="/static/assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Meyawo main styles -->
+    <link rel="stylesheet" href="/static/assets/css/meyawo.css">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" >
+
+    <!-- Page Navbar -->
+    <nav class="custom-navbar" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="logo" href="/">ITS Transit ЕООД</a>
+            <ul class="nav">
+                <li class="item">
+                    <a class="link" href="/">Начало</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="/find_bus">Автобуси</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#portfolio">Резервации</a>
+                </li>
+                
+                <li class="item">
+                    <a class="link" href="/sign_out">Изход</a>
+                </li>
+                
+            </ul>
+            <a href="javascript:void(0)" id="nav-toggle" class="hamburger hamburger--elastic">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </a>
+        </div>
+    </nav><!-- End of Page Navbar -->
+
+
+
+
+   <!-- Page Header -->
+   <header class="header header-mini">
+      <div class="header-title">Автобуси - списък</div>
+   </header> <!-- End Of Page Header -->
+
+<h3></h3>
+<h2>List of buses</h2>
+<table class="table table-striped" >
+    <thead style="background-color: blue;color: white;">
+    <td>ID</td>
+    <td>NAME</td>
+    <td>SOURCE</td>
+    <td>DESTINATION</td>
+    <td>NUM OF SEATS</td>
+    <td>NUM OF SEATS REM</td>
+    <td>PRICE</td>
+    <td>DATE</td>
+    <td>TIME</td>
+
+    </thead>
+
+    
+</table>
+<form action="/book" method="post">
+    <h3>Choose bus to book</h3>
+    <input type="hidden" name="csrfmiddlewaretoken" value="GyaraMj1SV6F9tBrHo2ddATPuKCcw0oLkSnMavhE4oFJATDFMdsJApQ1M8gjyWOC">
+    <div class="col-auto">
+        <label for="example-email-input" class="col-2 col-form-label">Bus ID</label>
+        <div class="col-5">
+            <input name='bus_id' class="form-control" type="number" id="example-email-input">
+        </div>
+    </div>
+    <div class="col=auto">
+        <label for="example-email-input" class="col-2 col-form-label">Number of seats</label>
+        <div class="col-5">
+            <input name='no_seats' class="form-control" type="number">
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="pull-right">
+        <button type="submit" class="btn btn-success float-left">Book bus</button>
+    </div>
+
+
+    
+
+</form>
+
+
+
+
+
+    <!-- footer -->
+    <div class="container">
+        <footer class="footer text-center">
+            <p class="mb-0">Банско 2024 Дипломен проект на Иван Сугарев</p>
+        </footer>
+    </div> <!-- end of page footer -->
+
+    <!-- core  -->
+    <script src="/static/assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="/static/assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="/static/assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+    <!-- Meyawo js -->
+    <script src="/static/assets/js/meyawo.js"></script>
+
+</body>
+
+</html>

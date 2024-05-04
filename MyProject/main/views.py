@@ -25,25 +25,29 @@ def home(request):
 @login_required(login_url='signin')
 def findbus(request):
     print('*** page findbus')
-    context = {}
+    context = {'title': 'Автобуси', }
     if request.method == 'POST':
         source_r = request.POST.get('source')
         dest_r = request.POST.get('destination')
         date_r = request.POST.get('date')
         bus_list = Bus.objects.filter(source=source_r, dest=dest_r, date=date_r)
         if bus_list:
-            return render(request, 'main/list.html', locals())
+            context['title'] = 'Автобуси - списък'
+            context.update(locals())
+            return render(request, 'main/list.html', context)
         else:
-            context["error"] = "Sorry no buses availiable"
+            context['title'] = 'Автобуси - търсене'
+            context["error"] = "Не са намерени резултати, отговарящи на Вашето търсене!"
             return render(request, 'main/findbus.html', context)
     else:
-        return render(request, 'main/findbus.html')
+        context['title'] = 'Автобуси - търсене'
+        return render(request, 'main/findbus.html', context)
 
 
 @login_required(login_url='signin')
 def bookings(request):
     print('*** page bookings')
-    context = {}
+    context = {'title': 'Резервации',}
     if request.method == 'POST':
         id_r = request.POST.get('bus_id')
         seats_r = int(request.POST.get('no_seats'))
@@ -69,9 +73,10 @@ def bookings(request):
                                            status='B')
                 print('------------book id-----------', book.id)
                 # book.save()
-                return render(request, 'main/bookings.html', locals())
+                context.update(locals())
+                return render(request, 'main/bookings.html', context)
             else:
-                context["error"] = "Sorry select fewer number of seats"
+                context["error"] = "Избрали сте твърде много места!"
                 return render(request, 'main/findbus.html', context)
 
     else:
@@ -92,7 +97,7 @@ def cancellings(request):
             rem_r = bus.rem + book.nos
             Bus.objects.filter(id=book.busid).update(rem=rem_r)
             #nos_r = book.nos - seats_r
-            Book.objects.filter(id=id_r).update(status='CANCELLED')
+            Book.objects.filter(id=id_r).update(status='C')
             Book.objects.filter(id=id_r).update(nos=0)
             return redirect(seebookings)
         except Book.DoesNotExist:
@@ -105,13 +110,14 @@ def cancellings(request):
 @login_required(login_url='signin')
 def seebookings(request, new={}):
     print('*** page seebookings')
-    context = {}
+    context = {'title': 'Резервации', }
     id_r = request.user.id
     book_list = Book.objects.filter(userid=id_r)
     if book_list:
-        return render(request, 'main/booklist.html', locals())
+        context.update(locals())
+        return render(request, 'main/booklist.html', context)
     else:
-        context["error"] = "Sorry no buses booked"
+        context["error"] = "Няма намерени резервации"
         return render(request, 'main/findbus.html', context)
 
 

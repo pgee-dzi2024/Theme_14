@@ -26,7 +26,7 @@
                     <a class="link" href="{% url 'find-bus' %}">Автобуси</a>
                 </li>
                 <li class="item">
-                    <a class="link" href="#portfolio">Резервации</a>
+                    <a class="link" href="{% url 'see-bookings' %}">Резервации</a>
                 </li>
                 {% if request.user.is_active %}
                 <li class="item">

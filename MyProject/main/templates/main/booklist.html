@@ -1,26 +1,35 @@
 {% extends 'main/base.html' %}
 {% block content %}
-<h3>{{msg}}</h3>
-<h2>List of buses</h2>
-<table class="table table-striped">
+
+   <!-- Page Header -->
+   <header class="header header-mini">
+      <div class="header-title">{{title}}</div>
+   </header> <!-- End Of Page Header -->
+
+<div class="container" style=" margin-top:60px">
+<h3 class="components-section-title">{{msg}}</h3>
+<hr>
+<h2 class="components-section-title">Списък резервации</h2>
+
+<table class="table table-striped" >
     <thead style="background-color: blue;color: white;">
-    <td>BOOKING ID</td>
-    <td>USER NAME</td>
-    <td>BUS NAME</td>
-    <td>SOURCE</td>
-    <td>DESTINATION</td>
-    <td>NUM OF SEATS</td>
-    <td>PRICE</td>
-    <td>DATE</td>
-    <td>TIME</td>
-    <td>STATUS</td>
-
-
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Клиент</th>
+            <th scope="col">Линия</th>
+            <th scope="col">От</th>
+            <th scope="col">До</th>
+            <th scope="col">Брой места</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Дата</th>
+            <th scope="col">Час</th>
+            <th scope="col">Статус</th>
+        </tr>
     </thead>
 
     {% for row in book_list %}
     <tr>
-        <td>{{row.id}}</td>
+        <th scope="row">{{row.id }}</th>
         <td>{{row.name}}</td>
         <td>{{row.bus_name}}</td>
         <td>{{row.source}}</td>
@@ -29,31 +38,40 @@
         <td>{{row.price}}</td>
         <td>{{row.date}}</td>
         <td>{{row.time}}</td>
-        <td>{{row.status}}</td>
-
-
+        {% if row.status == 'B' %}
+        <td style="color: green"> Активна </td>
+        {% else %}
+        <td style="color: red"> Отказана </td>
+        {% endif %}
     </tr>
     {% endfor %}
 </table>
+</div>
+
+<div class="container" style="margin-bottom:300px; margin-top:60px">
 <form action="{% url 'cancelling' %}" method="post">
-    <h3>Choose bus to book</h3>
+    <h3>Отказване - изберете ID на резервация:</h3>
     {% csrf_token %}
-    <div class="col-auto">
-        <label for="example-email-input" class="col-2 col-form-label">Bus ID</label>
-        <div class="col-5">
-            <input name='bus_id' class="form-control" type="number" id="example-email-input">
+    <div class="row mt-5">
+        <div class="col-md-4 text-right">
+            <h6 class="section-secondary-title">ID на резервация :</h6>
+        </div>
+        <div class="col-md-8">
+            <input name='bus_id' class="form-control" type="number">
         </div>
     </div>
+    <div class="row mt-5">
+        <div class="col-md-4 text-right">
 
-    <br>
-    <br>
-    <div class="pull-right">
-        <button type="submit" class="btn btn-danger float-left">Cancel bus</button>
+        </div>
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-danger float-left">Откажи</button>
+        </div>
     </div>
-
 
     {{error}}
 
 </form>
+</div>
 
 {% endblock %}
